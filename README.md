@@ -81,7 +81,7 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/nodejs/node-gyp)
 ```
 
 ## Technologies
-### For more information, go [here](https://github.com/linnovate/mean/blob/master/README.MD)
+### For more information, go [here](./docs/MEAN-README.MD)
 
 ### The MEAN stack
 
