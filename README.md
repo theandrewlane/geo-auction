@@ -3,6 +3,8 @@
 ### TODOs
 - Come up with a name for this application
   - Also update the repository name
+- Create Directory for all documents
+  - Add documents to this directory
 
 <hr>
 
