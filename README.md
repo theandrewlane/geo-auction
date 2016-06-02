@@ -10,6 +10,7 @@
 <hr>
 
 ## Getting Started:
+### Installs
 - Download the latest stable release of [Node](https://nodejs.org/en/)
 - Download the latest version of [Git] (https://git-scm.com/download/win)
 - Download the latest version of [2.7.x Python](https://www.python.org/downloads/)
@@ -17,3 +18,7 @@
     - Be sure to install the 2013 version, last I checked the latest version doesn't work properly with Node._
 - Download [Intellij IDEA OR Webstorm](https://www.jetbrains.com/student/)
   - You can easily get a student license which takes a few days - in the mean time use the 30 day free trial
+
+### Setting Up Your Machine for [MEAN](http://mean.io) Development
+#### Using Node Package Manager, install MEAN globally with the following commands
+ - ```npm i -g mean-cli@latest``` _(if you encounter errors, run cmd.exe as an administrator)_
