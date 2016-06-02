@@ -33,6 +33,7 @@
 ### Starting the app
 #### Run the following commands
  - ```gulp```
+_The app will be served locally [here](http://localhost:3000/)_
 
 
 ### Troubleshooting
