@@ -1,11 +1,11 @@
 # Auction-App _(Official Name TBD)_
 
-## [Project Proposal](./docs/Project-Proposal.pdf)
+#### [Project Proposal](./docs/Project-Proposal.pdf)
 ### TODOs
 - Come up with a name for this application
   - Also update the repository name
-- Create Directory for all documents
-  - Add documents to this directory
+- Create Gulp [EC2 deploy task](http://docs.aws.amazon.com/codedeploy/latest/userguide/github-integ-tutorial.html)
+  
 
 <hr>
 
