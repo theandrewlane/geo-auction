@@ -5,6 +5,7 @@
 - Come up with a name for this application
   - Also update the repository name
 - Create Gulp [EC2 deploy task](http://docs.aws.amazon.com/codedeploy/latest/userguide/github-integ-tutorial.html)
+- [EC2 Setup](https://scotch.io/tutorials/deploying-a-mean-app-to-amazon-ec2-part-1)
   
 
 <hr>
