@@ -1,10 +1,12 @@
-# Auction-App
+# Auction-App _(Offical Name TBD)_
 
-## TODOs
+### TODOs
 - Come up with a name for this application
   - Also update the repository name
+
 <hr>
-# Getting Started:
+
+## Getting Started:
 - Download the latest stable release of [Node](https://nodejs.org/en/)
 - Download the latest version of [Git] (https://git-scm.com/download/win)
 - Download the latest version of [2.7.x Python](https://www.python.org/downloads/)
