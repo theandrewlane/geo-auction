@@ -1,70 +1,49 @@
 'use strict';
 
-var path = require('path'),
-  rootPath = path.normalize(__dirname + '/../..');
-
 module.exports = {
-  root: rootPath,
-  http: {
-    port: process.env.PORT || 3000
+  app: {
+    title: 'MEAN.JS',
+    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
+    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
-  https: {
-    port: false,
-
-    // Paths to key and cert as string
-    ssl: {
-      key: '',
-      cert: '',
-      ca: ''
-    }
-  },
-  hostname: process.env.HOST || process.env.HOSTNAME,
-  db: process.env.MONGOHQ_URL,
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || '0.0.0.0',
   templateEngine: 'swig',
-
-  // The secret should be set to a non-guessable string that
-  // is used to compute a session hash
-  sessionSecret: 'MEAN',
-
-  // The name of the MongoDB collection to store sessions in
-  sessionCollection: 'sessions',
-
-  // The session cookie settings
+  // Session Cookie settings
   sessionCookie: {
-    path: '/',
+    // session expiration is set by default to 24 hours
+    maxAge: 24 * (60 * 60 * 1000),
+    // httpOnly flag makes sure the cookie is only accessed
+    // through the HTTP protocol and not JS/browser
     httpOnly: true,
-    // If secure is set to true then it will cause the cookie to be set
-    // only when SSL-enabled (HTTPS) is used, and otherwise it won't
-    // set a cookie. 'true' is recommended yet it requires the above
-    // mentioned pre-requisite.
-    secure: false,
-    // Only set the maxAge to null if the cookie shouldn't be expired
-    // at all. The cookie will expunge when the browser is closed.
-    maxAge: null
+    // secure cookie should be turned to true to provide additional
+    // layer of security so that the cookie is set only when working
+    // in HTTPS mode.
+    secure: false
   },
-  public: {
-    languages: [{
-      locale: 'en',
-      direction: 'ltr',
-    }, {
-      locale: 'he',
-      direction: 'rtl',
-    }],
-    currentLanguage: 'en',
-    loginPage: '/auth/login',
-    cssFramework: 'bootstrap'
+  // sessionSecret should be changed for security measures and concerns
+  sessionSecret: process.env.SESSION_SECRET || 'MEAN',
+  // sessionKey is set to the generic sessionId key used by PHP applications
+  // for obsecurity reasons
+  sessionKey: 'sessionId',
+  sessionCollection: 'sessions',
+  // Lusca config
+  csrf: {
+    csrf: false,
+    csp: { /* Content Security Policy object */},
+    xframe: 'SAMEORIGIN',
+    p3p: 'ABCDEF',
+    xssProtection: true
   },
-  clusterSticky: false,
-  stickyOptions: {
-    proxy: false, //activate layer 4 patching
-    header: 'x-forwarded-for', //provide here your header containing the users ip
-    num: (process.env.CPU_COUNT || require('os').cpus().length) - 1,
-  },
-  // The session cookie name
-  sessionName: 'connect.sid',
-  // Set bodyParser options
-  bodyParser: {
-    json: {limit: '100kb'},
-    urlencoded: {limit: '100kb', extended: true}
+  logo: 'modules/core/client/img/brand/logo.png',
+  favicon: 'modules/core/client/img/brand/favicon.ico',
+  uploads: {
+    profileUpload: {
+      dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
+      limits: {
+        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+      }
+    }
   }
 };

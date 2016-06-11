@@ -1,63 +1,96 @@
 'use strict';
 
+var defaultEnvConfig = require('./default');
+
 module.exports = {
-  db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
-  debug: true,
-  logging: {
-    format: 'tiny'
+  db: {
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
+    options: {
+      user: '',
+      pass: ''
+    },
+    // Enable mongoose debug mode
+    debug: process.env.MONGODB_DEBUG || false
   },
-  //  aggregate: 'whatever that is not false, because boolean false value turns aggregation off', //false
-  aggregate: false,
-  mongoose: {
-    debug: false
+  log: {
+    // logging with Morgan - https://github.com/expressjs/morgan
+    // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
+    format: 'dev',
+    fileLogger: {
+      directoryPath: process.cwd(),
+      fileName: 'app.log',
+      maxsize: 10485760,
+      maxFiles: 2,
+      json: false
+    }
   },
-  hostname: 'http://localhost:3000',
   app: {
-    name: 'MEAN - A Modern Stack - Development'
+    title: defaultEnvConfig.app.title + ' - Development Environment'
   },
-  strategies: {
-    local: {
-      enabled: true
-    },
-    landingPage: '/',
-    facebook: {
-      clientID: 'DEFAULT_APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/api/auth/facebook/callback',
-      enabled: false
-    },
-    twitter: {
-      clientID: 'DEFAULT_CONSUMER_KEY',
-      clientSecret: 'CONSUMER_SECRET',
-      callbackURL: 'http://localhost:3000/api/auth/twitter/callback',
-      enabled: false
-    },
-    github: {
-      clientID: 'DEFAULT_APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/api/auth/github/callback',
-      enabled: false
-    },
-    google: {
-      clientID: 'DEFAULT_APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/api/auth/google/callback',
-      enabled: false
-    },
-    linkedin: {
-      clientID: 'DEFAULT_API_KEY',
-      clientSecret: 'SECRET_KEY',
-      callbackURL: 'http://localhost:3000/api/auth/linkedin/callback',
-      enabled: false
-    }
+  facebook: {
+    clientID: process.env.FACEBOOK_ID || 'APP_ID',
+    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    callbackURL: '/api/auth/facebook/callback'
   },
-  emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
+  twitter: {
+    clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
+    clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+    callbackURL: '/api/auth/twitter/callback'
+  },
+  google: {
+    clientID: process.env.GOOGLE_ID || 'APP_ID',
+    clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+    callbackURL: '/api/auth/google/callback'
+  },
+  linkedin: {
+    clientID: process.env.LINKEDIN_ID || 'APP_ID',
+    clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
+    callbackURL: '/api/auth/linkedin/callback'
+  },
+  github: {
+    clientID: process.env.GITHUB_ID || 'APP_ID',
+    clientSecret: process.env.GITHUB_SECRET || 'APP_SECRET',
+    callbackURL: '/api/auth/github/callback'
+  },
+  paypal: {
+    clientID: process.env.PAYPAL_ID || 'CLIENT_ID',
+    clientSecret: process.env.PAYPAL_SECRET || 'CLIENT_SECRET',
+    callbackURL: '/api/auth/paypal/callback',
+    sandbox: true
+  },
   mailer: {
-    service: 'SERVICE_PROVIDER', // Gmail, SMTP
-    auth: {
-      user: 'EMAIL_ID',
-      pass: 'PASSWORD'
+    from: process.env.MAILER_FROM || 'MAILER_FROM',
+    options: {
+      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+      auth: {
+        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
+        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+      }
     }
-  }, 
-  secret: 'SOME_TOKEN_SECRET'
+  },
+  livereload: true,
+  seedDB: {
+    seed: process.env.MONGO_SEED === 'true',
+    options: {
+      logResults: process.env.MONGO_SEED_LOG_RESULTS !== 'false',
+      seedUser: {
+        username: process.env.MONGO_SEED_USER_USERNAME || 'user',
+        provider: 'local',
+        email: process.env.MONGO_SEED_USER_EMAIL || 'user@localhost.com',
+        firstName: 'User',
+        lastName: 'Local',
+        displayName: 'User Local',
+        roles: ['user']
+      },
+      seedAdmin: {
+        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'admin',
+        provider: 'local',
+        email: process.env.MONGO_SEED_ADMIN_EMAIL || 'admin@localhost.com',
+        firstName: 'Admin',
+        lastName: 'Local',
+        displayName: 'Admin Local',
+        roles: ['user', 'admin']
+      }
+    }
+  }
 };

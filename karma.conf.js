@@ -1,84 +1,77 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+var _ = require('lodash'),
+  defaultAssets = require('./config/assets/default'),
+  testAssets = require('./config/assets/test'),
+  testConfig = require('./config/env/test'),
+  karmaReporters = ['progress'];
+
+if (testConfig.coverage) {
+  karmaReporters.push('coverage');
+}
+
 // Karma configuration
-module.exports = function(config) {
-  var basePath = '.';
-
-  config.set({
-
-    // base path, that will be used to resolve files and exclude
-    basePath: basePath,
-
-    // frameworks to use
+module.exports = function (karmaConfig) {
+  karmaConfig.set({
+    // Frameworks to use
     frameworks: ['jasmine'],
-    files: [
-      'app.js',
-      'packages/**/public/tests/**/*.js'
-    ],
-    // list of files to exclude
-    exclude: [],
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage', 'junit'],
-
-    junitReporter: {
-      outputDir: 'tests/results/public/junit/'
-    },
-
-    // coverage
     preprocessors: {
-      // source files that you want to generate coverage for
-      // do not include tests or libraries
-      // (these files will be instrumented by Istanbul)
-      'packages/**/public/controllers/**/*.js': ['coverage'],
-      'packages/**/public/services/**/*.js': ['coverage'],
-      'packages/**/public/directives/**/*.js': ['coverage'],
-
-      'packages/**/public/**/*.html': ['ng-html2js'],
-
-     // 'packages/**/public/tests/**/*.js': ['webpack', 'babel'],
-      'app.js': ['webpack']
-    },
-
-    webpack: require('./webpack.test.js'),
-    webpackMiddleware: {
-      noInfo:true
-    },
-
-    coverageReporter: {
-      type: 'html',
-      dir: 'tests/results/coverage/'
+      'modules/*/client/views/**/*.html': ['ng-html2js'],
+      'modules/core/client/app/config.js': ['coverage'],
+      'modules/core/client/app/init.js': ['coverage'],
+      'modules/*/client/*.js': ['coverage'],
+      'modules/*/client/config/*.js': ['coverage'],
+      'modules/*/client/controllers/*.js': ['coverage'],
+      'modules/*/client/directives/*.js': ['coverage'],
+      'modules/*/client/services/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
-      cacheIdFromPath: function(path){
-        var cacheId = path;
+      moduleName: 'mean',
 
-        //Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
-        cacheId = cacheId.replace('packages/custom/', '');
-        cacheId = cacheId.replace('public/', '');
-
-        return cacheId;
+      cacheIdFromPath: function (filepath) {
+        return filepath;
       }
     },
 
-    // web server port
-    port: 9876,
-    // Look for server on port 3001 (invoked by mocha) - via @brownman
-    proxies: {
-      '/': 'http://localhost:3001/'
+    // List of files / patterns to load in the browser
+    files: _.union(defaultAssets.client.lib.js, defaultAssets.client.lib.tests, defaultAssets.client.js, testAssets.tests.client, defaultAssets.client.views),
+
+    // Test results reporter to use
+    // Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+    reporters: karmaReporters,
+
+    // Configure the coverage reporter
+    coverageReporter: {
+      dir: 'coverage/client',
+      reporters: [
+        // Reporters not supporting the `file` property
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' },
+        // Output coverage to console
+        { type: 'text' }
+      ],
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
     },
 
-    // enable / disable colors in the output (reporters and logs)
+    // Web server port
+    port: 9876,
+
+    // Enable / disable colors in the output (reporters and logs)
     colors: true,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    // Level of logging
+    // Possible values: karmaConfig.LOG_DISABLE || karmaConfig.LOG_ERROR || karmaConfig.LOG_WARN || karmaConfig.LOG_INFO || karmaConfig.LOG_DEBUG
+    logLevel: karmaConfig.LOG_INFO,
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    // Enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -92,18 +85,9 @@ module.exports = function(config) {
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,
-    // How long will Karma wait for a message from a browser before disconnecting from it (in ms).
-    browserNoActivityTimeout: 60000,
+
     // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: true,
-    plugins: [
-      'karma-jasmine',
-      'karma-webpack',
-      'karma-ng-html2js-preprocessor',
-      'karma-phantomjs-launcher',
-      'karma-coverage',
-      'karma-junit-reporter'
-    ]
+    // If true, it capture browsers, run tests and exit
+    singleRun: true
   });
 };
