@@ -25,7 +25,7 @@
       }
 
       function getTitle(currentState) {
-        var applicationCoreTitle = 'MEAN.js';
+        var applicationCoreTitle = 'WSU Auctions';
         var workingState = currentState;
         if (currentState.data) {
           workingState = (typeof workingState.locals !== 'undefined') ? workingState.locals.globals : workingState;
