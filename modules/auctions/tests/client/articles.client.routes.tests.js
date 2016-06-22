@@ -53,7 +53,7 @@
         });
 
         it('Should have template', function () {
-          expect(liststate.templateUrl).toBe('modules/auctions/client/views/list-auctions.client.view.html');
+          expect(liststate.templateUrl).toBe('modules/auctions/client/views/list-auction.client.view.html');
         });
       });
 
@@ -220,7 +220,7 @@
           $rootScope.$digest();
 
           expect($location.path()).toBe('/auctions');
-          expect($state.current.templateUrl).toBe('modules/auctions/client/views/list-auctions.client.view.html');
+          expect($state.current.templateUrl).toBe('modules/auctions/client/views/list-auction.client.view.html');
         }));
       });
 

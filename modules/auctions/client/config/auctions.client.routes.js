@@ -16,7 +16,7 @@
       })
       .state('auctions.list', {
         url: '',
-        templateUrl: 'modules/auctions/client/views/list-auctions.client.view.html',
+        templateUrl: 'modules/auctions/client/views/list-auction.client.view.html',
         controller: 'AuctionsListController',
         controllerAs: 'vm',
         data: {
