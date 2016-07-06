@@ -3,13 +3,7 @@
 
   angular
     .module('core')
-    .controller('HomeController', HomeController)
-    .directive("searchForm", function(){
-        return {
-            restrict: "E",
-            templateUrl: "search-form.html"
-        };
-    });
+    .controller('HomeController', HomeController);
 
   function HomeController() {
     var vm = this;
