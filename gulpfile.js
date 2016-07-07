@@ -393,6 +393,15 @@ gulp.task('default', function (done) {
   runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
 });
 
+gulp.task('dev-local', function (done) {
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+});
+
+gulp.task('dev', function (done) {
+  process.env.MONGO_URL = 'mongodb://heroku_4hs1bc6t:9ohu2af3oq7r6aur0087grv57s@ds019658.mlab.com:19658/heroku_4hs1bc6t' + '/mean-dev';
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+});
+
 // Run the project in debug mode
 gulp.task('debug', function (done) {
   runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon-debug', 'watch'], done);
