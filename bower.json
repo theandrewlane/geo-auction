@@ -1,7 +1,7 @@
 {
-  "name": "auction-app",
-  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-  "homepage": "http://meanjs.org/",
+  "name": "auctions-near-me",
+  "description": "An auction web app with your current location in mind",
+  "homepage": "https://github.com/theandrewlane/Auction-App.git",
   "license": "MIT",
   "dependencies": {
     "angular": "~1.5.0",

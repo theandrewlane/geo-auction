@@ -5,7 +5,6 @@
  */
 var config = require('../config'),
   express = require('express'),
-  morgan = require('morgan'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
