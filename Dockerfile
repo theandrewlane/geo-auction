@@ -1,14 +1,14 @@
 # Build:
-# docker build -t meanjs/mean .
+# docker build -t auctions-near-me .
 #
 # Run:
-# docker run -it meanjs/mean
+# docker run -it auctions-near-me
 #
 # Compose:
 # docker-compose up -d
 
 FROM ubuntu:latest
-MAINTAINER MEAN.JS
+MAINTAINER Andrew Lane
 
 # Install Utilities
 RUN apt-get update -q
