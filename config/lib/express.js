@@ -67,9 +67,6 @@ module.exports.initMiddleware = function (app) {
 
   // Initialize favicon middleware
   app.use(favicon(app.locals.favicon));
-
-
-
   // Environment dependent middleware
   if (process.env.NODE_ENV === 'development') {
     // Disable views cache
