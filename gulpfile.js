@@ -373,7 +373,7 @@ gulp.task('heroku-deploy', shell.task([
     'echo Starting Heroku Deploy - Only Andrew can use this',
     'git fetch',
     'git pull',
-    'git push heroku heroku-app-deploy:master',
+    'git push heroku +HEAD:master',
     'echo deploy complete'
 ]));
 

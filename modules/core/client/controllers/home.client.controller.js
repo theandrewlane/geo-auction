@@ -7,7 +7,7 @@
     .directive("searchForm", function(){
         return {
             restrict: "E",
-            templateUrl: "search-form.html"
+            templateUrl: "modules/core/client/views/search-form.html"
         };
     });
 
