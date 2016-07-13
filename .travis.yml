@@ -1,0 +1,23 @@
+
+language: node_js
+sudo: false
+node_js:
+  - "4.2.4"
+  - "5.4.1"
+env:
+  - NODE_ENV=development
+services:
+
+before_install:
+  - npm i -g npm@'>=3.5.3'
+  - npm -v
+  - npm i -g bower
+  - bower -v
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/31dae12ca9034c37d726
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: always     # default: false
