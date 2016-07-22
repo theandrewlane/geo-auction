@@ -1,6 +1,7 @@
 # Auction-App _(Official Name TBD)_
 
-[![Build Status](https://travis-ci.com/theandrewlane/Auction-App.svg?token=Ntw63fVp4a3VNZLyV15H&branch=master)](https://travis-ci.com/theandrewlane/Auction-App)
+[![Build Status](https://travis-ci.org/theandrewlane/Auction-App.svg?branch=master)](https://travis-ci.org/theandrewlane/Auction-App)
+
 [![Gitter](https://badges.gitter.im/theandrewlane/Auction-App.svg)](https://gitter.im/theandrewlane/Auction-App?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 #### [Project Proposal](./docs/Project-Proposal.pdf)
