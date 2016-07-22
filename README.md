@@ -49,14 +49,31 @@ $ gem install sass
 $ npm install gulp -g
 ```
 
-* Docker
+* All other dependencies - This installs all node modules specified in ```package.json```
+
+```bash
+$ npm install
+```
+
+
+## Docker Development 
+### If you have trouble installing the dependencies, create and utilize the docker container
 - (TODO) push docker image to docker hub
-Build:
+
+- Build the Docker container:
 ```bash
 $ docker build -t auctions-near-me .
 ```
-Run:
+- Run the Container
 ```bash
 $ docker run -it auctions-near-me
 ```
 
+## Development
+### After installing all dependencies, use Gulp to build, lint, and serve.
+### ```gulp dev``` will automatically rebuild and serve when you've made code changes
+
+- Run the Gulp dev task (should be left running while developing)
+```bash
+$ gulp dev
+```
