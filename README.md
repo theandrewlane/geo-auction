@@ -1,8 +1,8 @@
-# Auction-App _(Official Name TBD)_
+# [Auctions-Near-Me](http://auctions-near-me.herokuapp.com/)
 
 [![Build Status](https://travis-ci.org/theandrewlane/Auction-App.svg?branch=master)](https://travis-ci.org/theandrewlane/Auction-App)
-
 [![Gitter](https://badges.gitter.im/theandrewlane/Auction-App.svg)](https://gitter.im/theandrewlane/Auction-App?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Heroku](https://camo.githubusercontent.com/be46aee4f8d55e322c3e7db60ea23a4deb5427c9/68747470733a2f2f6865726f6b752d62616467652e6865726f6b756170702e636f6d2f3f6170703d6865726f6b752d6261646765)](http://auctions-near-me.herokuapp.com/)
 
 #### [Project Proposal](./docs/Project-Proposal.pdf)
 ### TODOs
